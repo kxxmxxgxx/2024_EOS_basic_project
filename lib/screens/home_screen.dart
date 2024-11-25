@@ -1,3 +1,4 @@
+import 'package:eos_todolist/screens/setting_screen.dart';
 import 'package:eos_todolist/widgets/add_button.dart';
 import 'package:eos_todolist/widgets/todo_item.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 'assets/images/eos_logo.png',
                 fit: BoxFit.contain,
               )),
+          actions: [IconButton(onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => SettingScreen()));
+          }, icon: Icon(Icons.settings_rounded))],
         ),
         body: Column(
           children: [
@@ -48,14 +52,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   Container(
                     width: 140,
                     height: 140,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(width: 10, color: Colors.grey),
-                      borderRadius: BorderRadius.circular(250),
-                    ),
-                    child: Center(
-                      child: Image.asset('assets/images/eos_logo.png'),
-                    ),
+                    // decoration: BoxDecoration(
+                    //   color: Colors.white,
+                    //   border: Border.all(width: 10, color: Colors.grey),
+                    //   borderRadius: BorderRadius.circular(250),
+                    // ),
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(80),
+                          child: Image.asset('assets/images/eos_kmg.png',fit: BoxFit.cover,)),
                   ),
                   SizedBox(
                     width: 35,
@@ -166,13 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           TextButton(onPressed: (){
-            if(_textController.text.isNotEmpty){
-              setState(() {
-                toDoLists.add(_textController.text);
-                _textController.clear();
-              });
-              Navigator.of(context).pop();
-            }
+            Navigator.of(context).pop();
           }, child: Text('취소',style: TextStyle(color: Colors.black),)),
           TextButton(onPressed: (){
             if(_textController.text.isNotEmpty){
